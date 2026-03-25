@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com"
+    xmlns:tools="http://schemas.android.com"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:fitsSystemWindows="true"> <!-- Добавлено для корректного Edge-to-Edge -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/restaurantRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/restaurant_item" /> <!-- Замените на название вашего XML для элемента списка -->
+
+</LinearLayout>
