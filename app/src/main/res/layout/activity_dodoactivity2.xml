@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Заголовок -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DODO Pizza"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Картинка (заглушка — замените на реальную) -->
+        <ImageView
+            android:id="@+id/restaurantImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="#CCCCCC"
+            android:contentDescription="Ресторан DODO Pizza"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Описание -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Сеть пиццерий с быстрой доставкой и свежими ингредиентами. Мы готовим пиццу за 15 минут!"
+            android:textSize="16sp"
+            android:lineSpacingMultiplier="1.2"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Раздел отзывов -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Отзывы"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Отзыв 1 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="«Отличная пицца, быстрая доставка! Всегда заказываю здесь.» — Анна, 5 звезд"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Отзыв 2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="«Вкусная пицца по доступной цене. Рекомендую!» — Иван, 5 звезд"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Кнопка «Сделать заказ» -->
+        <Button
+            android:id="@+id/btnOrder"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Сделать заказ"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@color/design_default_color_primary"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Кнопка «Забронировать столик» -->
+        <Button
+            android:id="@+id/btnReserve"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Забронировать столик"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@color/design_default_color_secondary" />
+
+    </LinearLayout>
+</ScrollView>
