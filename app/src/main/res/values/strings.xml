@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">restor</string>
+    <string-array name="restor">
+        <item>Маргарита (30 см.)</item>
+        <item>Пепперони (30 см.)</item>
+        <item>Четыре сыра (30 см.)</item>
+        <item>Мясная (30 см.)</item>
+        <item>Вегетарианская (30 см)</item>
+    </string-array>
 </resources>

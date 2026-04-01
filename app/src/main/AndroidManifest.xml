@@ -7,10 +7,21 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="@string/bottom_sheet_behavior"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Restor">
+        <activity
+            android:name=".PizzaAdapter"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <!-- ДОБАВЬ ЭТУ СТРОКУ НИЖЕ -->
+        <activity
+            android:name=".PizzaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".zakazpizzaActivity"
+            android:exported="false" />
         <activity
             android:name=".VanyaActivity"
             android:exported="false" />

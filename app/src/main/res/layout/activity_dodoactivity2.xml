@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,23 +20,25 @@
             android:layout_marginBottom="16dp" />
 
         <!-- Картинка (заглушка — замените на реальную) -->
+
+        <!-- Описание -->
         <ImageView
             android:id="@+id/restaurantImage"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
+            android:layout_marginBottom="16dp"
             android:background="#CCCCCC"
             android:contentDescription="Ресторан DODO Pizza"
-            android:layout_marginBottom="16dp" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/dodooiskapopa" />
 
-        <!-- Описание -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Сеть пиццерий с быстрой доставкой и свежими ингредиентами. Мы готовим пиццу за 15 минут!"
-            android:textSize="16sp"
+            android:layout_marginBottom="24dp"
             android:lineSpacingMultiplier="1.2"
-            android:layout_marginBottom="24dp" />
+            android:text="Сеть пиццерий с быстрой доставкой и свежими ингредиентами. Мы готовим пиццу за 15 минут!"
+            android:textSize="16sp" />
 
         <!-- Раздел отзывов -->
         <TextView
@@ -64,26 +65,46 @@
             android:textSize="14sp"
             android:layout_marginBottom="16dp" />
 
-        <!-- Кнопка «Сделать заказ» -->
-        <Button
-            android:id="@+id/btnOrder"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Сделать заказ"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:background="@color/design_default_color_primary"
-            android:layout_marginBottom="12dp" />
+        <!-- Контейнер для кнопок (внизу экрана) -->
+        <LinearLayout
 
-        <!-- Кнопка «Забронировать столик» -->
-        <Button
-            android:id="@+id/btnReserve"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Забронировать столик"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:background="@color/design_default_color_secondary" />
+            android:layout_height="170dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <!-- Кнопка «Сделать заказ» (слева) -->
+            <!-- Отступ между кнопками -->
+
+            <!-- Кнопка «Забронировать столик» (справа) -->
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btnOrder"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:layout_gravity="bottom|center"
+                android:layout_weight="1"
+                android:onClick="goToOrderPage"
+                android:background="@drawable/button_rounded1"
+                android:shadowColor="#FFFFFF"
+                android:text="Сделать заказ"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:layout_margin="10dp"
+                android:id="@+id/btnReserve"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_gravity="bottom|center"
+                android:layout_weight="1"
+                android:background="@drawable/button_rounded1"
+                android:shadowColor="#FFFFFF"
+                android:text="Забронировать столик"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

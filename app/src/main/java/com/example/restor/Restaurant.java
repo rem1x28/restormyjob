@@ -2,6 +2,7 @@ package com.example.restor;
 
 public class Restaurant {
     private String name;
+    public String restor;
     private double rating;
     private String restaurantType;
     private int imageRes;
