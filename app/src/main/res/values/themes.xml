@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Restor" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.Restor" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Основные цвета для нежно-розовой темы -->
+        <item name="colorPrimary">@color/pink_medium</item>
+        <item name="colorPrimaryDark">@color/pink_dark</item>
+        <item name="colorAccent">@color/pink_accent</item>
+        <item name="android:windowBackground">@color/pink_light</item>
     </style>
 
-    <style name="Theme.Restor" parent="Base.Theme.Restor" />
+    <style name="Theme.Restor" parent="Base.Theme.Restor">
+        <!-- Стилизация кнопок -->
+        <item name="buttonStyle">@style/PinkButton</item>
+    </style>
+
+    <style name="PinkButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_rounded1</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

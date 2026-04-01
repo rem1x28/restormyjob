@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">restor</string>
+    <string name="app_name">Restor</string>
+    <string name="search_hint">Поиск блюд...</string>
+    <string name="global_search_hint">Введите название блюда (борщ, пицца...)</string>
+    <string name="menu_title">Меню блюд</string>
+    <string name="order_button">Оформить предзаказ</string>
+
+    <string-array name="restor">
+        <item>Маргарита (30 см.)</item>
+        <item>Пепперони (30 см.)</item>
+        <item>Четыре сыра (30 см.)</item>
+        <item>Мясная (30 см.)</item>
+        <item>Вегетарианская (30 см)</item>
+    </string-array>
 </resources>

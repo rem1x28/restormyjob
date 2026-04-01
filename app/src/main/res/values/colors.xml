@@ -2,4 +2,17 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Нежно-розовая палитра -->
+    <color name="pink_light">#FFF5F5</color>
+    <color name="pink_soft">#FFC0CB</color>
+    <color name="pink_medium">#FFB6C1</color>
+    <color name="pink_dark">#FF69B4</color>
+    <color name="pink_accent">#DB7093</color>
+
+    <!-- Основные цвета темы -->
+    <color name="colorPrimary">#FFB6C1</color>
+    <color name="colorPrimaryDark">#FF69B4</color>
+    <color name="colorAccent">#DB7093</color>
+    <color name="backgroundColor">#FFF5F5</color>
 </resources>

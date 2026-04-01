@@ -12,6 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restor">
         <activity
+            android:name=".zakazvanya"
+            android:exported="false" />
+        <activity
+            android:name=".ThankYouActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PizzaAdapter"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name=".PizzaDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".zakazpizzaActivity"
+            android:exported="false" />
+        <activity
             android:name=".VanyaActivity"
             android:exported="false" />
         <activity
