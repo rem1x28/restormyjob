@@ -26,11 +26,26 @@
             android:drawablePadding="8dp" />
     </LinearLayout>
 
+    <!-- Контейнер для списка ресторанов -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/restaurantRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/searchContainer"
+        android:layout_above="@id/bottom_navigation" />
+
+    <!-- Подключаем лейаут профиля -->
+    <include
+        layout="@layout/layout_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom_navigation" />
+
+    <!-- Подключаем лейаут заказов -->
+    <include
+        layout="@layout/layout_orders"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_above="@id/bottom_navigation" />
 
     <!-- Панель навигации внизу -->

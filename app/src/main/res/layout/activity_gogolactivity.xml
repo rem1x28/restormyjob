@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     android:padding="16dp">
 
     <LinearLayout
@@ -12,97 +13,154 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GOGOL MOGOL"
-            android:textSize="24sp"
+            android:text="ГОГОЛЬ МОГОЛЬ"
+            android:textColor="#333333"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
 
-        <!-- Картинка (заглушка — замените на реальную) -->
+        <!-- Главное изображение -->
+        <androidx.cardview.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/restaurantImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Ресторан ГОГОЛЬ МОГОЛЬ"
+                android:scaleType="centerCrop"
+                android:src="@drawable/gogolpic" />
+        </androidx.cardview.widget.CardView>
 
         <!-- Описание -->
-        <ImageView
-            android:id="@+id/restaurantImage"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginBottom="16dp"
-            android:background="#CCCCCC"
-            android:contentDescription="Ресторан GOGOL MOGOL"
-            android:scaleType="centerCrop"
-            android:src="@drawable/lina" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:lineSpacingMultiplier="1.2"
-            android:text="Гоголь-Моголь - семейное кафе с теплой атмосферой и изысканной кухней."
+            android:lineSpacingMultiplier="1.3"
+            android:text="Добро пожаловать в «Гоголь-Моголь» — место, где оживают традиции русской и европейской кухни. Мы создали атмосферу домашнего уюта, где каждое блюдо приготовлено с любовью из самых свежих фермерских продуктов. Наше меню — это гармония классических рецептов и авторской подачи."
+            android:textColor="#555555"
             android:textSize="16sp" />
 
         <!-- Раздел отзывов -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Отзывы"
-            android:textSize="18sp"
+            android:text="Отзывы наших гостей"
+            android:textColor="#333333"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="12dp" />
 
         <!-- Отзыв 1 -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="«Хорошие блюда, вкусно и качественно. Посещаем с семьей данный ресторанчик довольно часто, всегда вкусно и разнообразно. С детьми удобно, вежливый персонал, есть детская комната, детские стульчики, вкусная пицца 4 сыра» — Олег, 5 звезд» — Олег, 5 звезд"
-            android:textSize="14sp"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="«Вкусная пицца по доступной цене. Рекомендую!» — Иван, 5 звезд"
-            android:textSize="14sp"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Контейнер для кнопок (внизу экрана) -->
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_backgroung"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="«Потрясающая котлета по-киевски! Как в детстве, только лучше. Масло вытекает как надо, пюре нежнейшее. Очень рекомендую!»"
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:fontStyle="italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Мария, ★★★★★"
+                android:gravity="end"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
 
-            <!-- Кнопка «Сделать заказ» (слева) -->
-            <!-- Отступ между кнопками -->
+        <!-- Отзыв 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_backgroung"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="«Хрустящие баклажаны — это просто открытие. Очень необычное сочетание текстур и соуса. Интерьер располагает к долгим беседам.»"
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:fontStyle="italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Алексей, ★★★★★"
+                android:gravity="end"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
 
-            <!-- Кнопка «Забронировать столик» (справа) -->
+        <!-- Отзыв 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_backgroung"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="«Заказывали овощи на гриле и тирамису. Всё на высшем уровне. Персонал очень внимательный, подача быстрая.»"
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:fontStyle="italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Елена, ★★★★★"
+                android:gravity="end"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Кнопки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
 
             <Button
-                android:layout_margin="10dp"
                 android:id="@+id/btnOrder"
                 android:layout_width="match_parent"
-                android:layout_height="62dp"
-                android:layout_gravity="bottom|center"
-                android:layout_weight="1"
-                android:onClick="goToOrderPage"
+                android:layout_height="60dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/button_rounded1"
-                android:shadowColor="#FFFFFF"
                 android:text="Сделать заказ"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <Button
-                android:layout_margin="10dp"
                 android:id="@+id/btnReserve"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_gravity="bottom|center"
-                android:layout_weight="1"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/button_rounded1"
-                android:shadowColor="#FFFFFF"
                 android:text="Забронировать столик"
+                android:textAllCaps="false"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
