@@ -1,77 +1,97 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@drawable/item_backgroung"
     android:padding="12dp"
-    android:gravity="center_vertical"
     android:layout_margin="8dp">
 
-    <ImageButton
-        android:id="@+id/imgPizza"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:background="?attr/selectableItemBackground"
-        android:contentDescription="Изображение пиццы" />
-
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingLeft="16dp">
-
-        <TextView
-            android:id="@+id/tvPizzaName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Название пиццы"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvPizzaPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Цена: 0 руб."
-            android:textSize="14sp"
-            android:textColor="#666" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center_vertical">
 
-        <Button
-            android:id="@+id/btnMinus"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="-"
-            android:textSize="18sp"
-            android:padding="0dp"
-            style="?android:attr/buttonStyleSmall" />
+        <ImageButton
+            android:id="@+id/imgPizza"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:background="?attr/selectableItemBackground"
+            android:contentDescription="Изображение блюда" />
 
-        <TextView
-            android:id="@+id/tvCount"
-            android:layout_width="30dp"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="0"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="16dp">
 
-        <Button
-            android:id="@+id/btnPlus"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:text="+"
-            android:textSize="18sp"
-            android:padding="0dp"
-            style="?android:attr/buttonStyleSmall" />
+            <TextView
+                android:id="@+id/tvPizzaName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Название блюда"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPizzaPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Цена: 0 руб."
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="-"
+                android:textSize="18sp"
+                android:padding="0dp"
+                style="?android:attr/buttonStyleSmall" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:textSize="18sp"
+                android:padding="0dp"
+                style="?android:attr/buttonStyleSmall" />
+        </LinearLayout>
     </LinearLayout>
+
+    <!-- Поле для описания блюда (ингредиентов) -->
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:text=""
+        android:textSize="14sp"
+        android:textColor="#666"
+        android:lineSpacingMultiplier="1.1" />
 
 </LinearLayout>

@@ -4,7 +4,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,11 +17,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+import java.util.Locale;
+
 public class dodoactivity extends AppCompatActivity {
 
     private Button btnOrder;
     private ImageView imageView;
     private Button btnReserve;
+    private DatabaseHelper dbHelper;
+    private long lastOrderId = -1;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,16 +34,47 @@ public class dodoactivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dodoactivity2);
 
+        dbHelper = new DatabaseHelper(this);
+
         // Инициализируем элементы
         btnOrder = findViewById(R.id.btnOrder);
         imageView = findViewById(R.id.restaurantImage);
         btnReserve = findViewById(R.id.btnReserve);
 
         // Слушатель для кнопки бронирования
-        btnReserve.setOnClickListener(this::showBookingDialog);
+        btnReserve.setOnClickListener(v -> {
+            if (isUserLoggedIn()) {
+                showBookingDialog(v);
+            } else {
+                showLoginPrompt();
+            }
+        });
 
         // Слушатель для кнопки перехода к заказу
-        btnOrder.setOnClickListener(this::goToOrderPage);
+        btnOrder.setOnClickListener(v -> {
+            if (isUserLoggedIn()) {
+                goToOrderPage(v);
+            } else {
+                showLoginPrompt();
+            }
+        });
+    }
+
+    private boolean isUserLoggedIn() {
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        return prefs.getString("username", null) != null;
+    }
+
+    private void showLoginPrompt() {
+        new AlertDialog.Builder(this)
+                .setTitle("Требуется авторизация")
+                .setMessage("Чтобы забронировать столик или сделать предзаказ, пожалуйста, войдите в свой профиль.")
+                .setPositiveButton("Войти", (dialog, which) -> {
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Отмена", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
     public void goToOrderPage(View view) {
@@ -42,74 +83,83 @@ public class dodoactivity extends AppCompatActivity {
     }
 
     public void showBookingDialog(View view) {
-        // 1. Создаём строитель диалога
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Бронирование столика");
-
-        // 2. Подключаем разметку
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_booking, null);
         builder.setView(dialogView);
 
-        // Находим поля внутри окна
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
         EditText etDate = dialogView.findViewById(R.id.etDate);
         EditText etGuests = dialogView.findViewById(R.id.etGuests);
         EditText etTableInfo = dialogView.findViewById(R.id.etTableInfo);
+        Button btnConfirm = dialogView.findViewById(R.id.btnConfirm);
+        Button btnCancel = dialogView.findViewById(R.id.btnCancel);
 
-        // 3. Добавляем кнопки (PositiveButton без обработчика, чтобы настроить его позже)
-        builder.setPositiveButton("Забронировать", null);
-        builder.setNegativeButton("Отмена", (d, which) -> d.dismiss());
+        etDate.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
+                Calendar timeCalendar = Calendar.getInstance();
+                new TimePickerDialog(this, (view2, hourOfDay, minute) -> {
+                    String selectedDateTime = String.format(Locale.getDefault(), "%02d.%02d.%d %02d:%02d", 
+                            dayOfMonth, month + 1, year, hourOfDay, minute);
+                    etDate.setText(selectedDateTime);
+                }, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), true).show();
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
 
-        // Создаём и показываем диалог
-        AlertDialog dialog = builder.create();
-        dialog.show();
-
-        // Назначаем обработчик после show(), чтобы диалог не закрывался при ошибках валидации
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-            String date = etDate.getText().toString().trim();
+        btnConfirm.setOnClickListener(v -> {
+            String dateText = etDate.getText().toString().trim();
             String guestsStr = etGuests.getText().toString().trim();
             String tableInfo = etTableInfo.getText().toString().trim();
 
-            if (date.isEmpty()) {
-                Toast.makeText(this, "Пожалуйста, введите дату бронирования", Toast.LENGTH_SHORT).show();
-                etDate.requestFocus();
+            if (dateText.isEmpty()) {
+                Toast.makeText(this, "Выберите дату и время", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (guestsStr.isEmpty()) {
-                Toast.makeText(this, "Пожалуйста, укажите количество гостей", Toast.LENGTH_SHORT).show();
-                etGuests.requestFocus();
-                return;
-            }
-
-            if (tableInfo.isEmpty()) {
-                Toast.makeText(this, "Пожалуйста, укажите информацию о столике", Toast.LENGTH_SHORT).show();
-                etTableInfo.requestFocus();
+                Toast.makeText(this, "Укажите количество гостей", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             try {
                 int guestsCount = Integer.parseInt(guestsStr);
-                if (guestsCount < 1 || guestsCount > 20) {
-                    Toast.makeText(this, "Количество гостей должно быть от 1 до 20", Toast.LENGTH_SHORT).show();
+                if (guestsCount < 1 || guestsCount > 15) {
+                    Toast.makeText(this, "Количество гостей должно быть от 1 до 15", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                // Успешное завершение бронирования
+                SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                String currentUser = prefs.getString("username", "Unknown");
+                
+                String details = "Дата: " + dateText + ", Гостей: " + guestsCount;
+                if (!tableInfo.isEmpty()) details += ", Пожелания: " + tableInfo;
+
+                lastOrderId = dbHelper.insertOrder(currentUser, "DODO Pizza", "Бронирование", details);
+
                 dialog.dismiss();
-                showPreOrderPrompt();
+                showPreOrderPrompt(details);
 
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Введите корректное число гостей", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        dialog.show();
     }
 
-    private void showPreOrderPrompt() {
+    private void showPreOrderPrompt(String bookingDetails) {
         new AlertDialog.Builder(this)
                 .setTitle("Бронирование успешно!")
-                .setMessage("Желаете сделать предзаказ блюд?")
+                .setMessage("Желаете добавить к бронированию предзаказ блюд?")
                 .setPositiveButton("Да, выбрать блюда", (dialog, which) -> {
                     Intent intent = new Intent(dodoactivity.this, zakazpizzaActivity.class);
+                    intent.putExtra("existing_order_id", lastOrderId);
+                    intent.putExtra("booking_details", bookingDetails);
                     startActivity(intent);
                 })
                 .setNegativeButton("Нет, спасибо", (dialog, which) -> {

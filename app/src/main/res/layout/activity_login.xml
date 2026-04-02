@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF5F5"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Вход"
+        android:textColor="#DB7093"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tvError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Данные для входа неверны"
+        android:textColor="#FF0000"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ваше имя"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp" />
+
+    <EditText
+        android:id="@+id/etLoginName"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@drawable/pink_input_bg"
+        android:paddingHorizontal="16dp"
+        android:hint="Введите имя"
+        android:textColor="@color/black"
+        android:textColorHint="#BCBCBC"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Пароль"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp" />
+
+    <EditText
+        android:id="@+id/etLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:inputType="textPassword"
+        android:background="@drawable/pink_input_bg"
+        android:paddingHorizontal="16dp"
+        android:hint="Введите пароль"
+        android:textColor="@color/black"
+        android:textColorHint="#BCBCBC"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/btnDoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/button_rounded1"
+        android:text="Войти"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:id="@+id/tvGoToRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Нет аккаунта? Зарегистрироваться"
+        android:textColor="#DB7093"
+        android:gravity="center"
+        android:textSize="16sp" />
+
+</LinearLayout>

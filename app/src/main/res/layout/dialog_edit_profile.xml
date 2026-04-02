@@ -9,9 +9,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Бронирование"
+        android:text="Редактировать профиль"
         android:textColor="#DB7093"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginBottom="20dp" />
@@ -19,65 +19,76 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Дата и время"
+        android:text="Новое имя"
         android:textColor="#555555"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginBottom="6dp" />
 
     <EditText
-        android:id="@+id/etDate"
+        android:id="@+id/etEditName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:focusable="false"
-        android:clickable="true"
         android:background="@drawable/pink_input_bg"
         android:paddingHorizontal="12dp"
-        android:hint="Нажмите для выбора"
+        android:hint="Введите имя"
         android:textColor="@color/black"
-        android:textColorHint="#BCBCBC"
-        android:drawableEnd="@android:drawable/ic_menu_my_calendar"
         android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Количество гостей (макс. 15)"
+        android:text="Выберите аватар"
         android:textColor="#555555"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginBottom="6dp" />
 
-    <EditText
-        android:id="@+id/etGuests"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="number"
-        android:background="@drawable/pink_input_bg"
-        android:paddingHorizontal="12dp"
-        android:hint="2"
-        android:textColor="@color/black"
-        android:textColorHint="#BCBCBC"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Пожелания"
-        android:textColor="#555555"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="6dp" />
+        android:layout_marginBottom="12dp">
 
-    <EditText
-        android:id="@+id/etTableInfo"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivPick1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/lina"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/vanya"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/gogolpic"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/btnPickGallery"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/pink_input_bg"
-        android:paddingHorizontal="12dp"
-        android:hint="У окна, тихий столик..."
+        android:layout_height="wrap_content"
+        android:text="Загрузить из галереи"
+        android:background="@drawable/button_rounded1"
+        android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textColorHint="#BCBCBC"
         android:layout_marginBottom="24dp" />
 
     <LinearLayout
@@ -87,7 +98,7 @@
         android:gravity="end">
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnEditCancel"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,11 +106,11 @@
             android:textColor="#DB7093" />
 
         <Button
-            android:id="@+id/btnConfirm"
+            android:id="@+id/btnEditSave"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ЗАБРОНИРОВАТЬ"
+            android:text="СОХРАНИТЬ"
             android:textColor="#DB7093"
             android:textStyle="bold" />
     </LinearLayout>

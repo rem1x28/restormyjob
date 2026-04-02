@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Бронирование"
+        android:text="Регистрация"
         android:textColor="#DB7093"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -19,43 +19,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Дата и время"
+        android:text="Ваше имя"
         android:textColor="#555555"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginBottom="6dp" />
 
     <EditText
-        android:id="@+id/etDate"
+        android:id="@+id/etRegName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:focusable="false"
-        android:clickable="true"
         android:background="@drawable/pink_input_bg"
         android:paddingHorizontal="12dp"
-        android:hint="Нажмите для выбора"
-        android:textColor="@color/black"
-        android:textColorHint="#BCBCBC"
-        android:drawableEnd="@android:drawable/ic_menu_my_calendar"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Количество гостей (макс. 15)"
-        android:textColor="#555555"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="6dp" />
-
-    <EditText
-        android:id="@+id/etGuests"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:inputType="number"
-        android:background="@drawable/pink_input_bg"
-        android:paddingHorizontal="12dp"
-        android:hint="2"
+        android:hint="Введите имя"
         android:textColor="@color/black"
         android:textColorHint="#BCBCBC"
         android:layout_marginBottom="16dp" />
@@ -63,19 +39,20 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Пожелания"
+        android:text="Пароль"
         android:textColor="#555555"
         android:textSize="14sp"
         android:textStyle="bold"
         android:layout_marginBottom="6dp" />
 
     <EditText
-        android:id="@+id/etTableInfo"
+        android:id="@+id/etRegPassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:inputType="textPassword"
         android:background="@drawable/pink_input_bg"
         android:paddingHorizontal="12dp"
-        android:hint="У окна, тихий столик..."
+        android:hint="Введите пароль"
         android:textColor="@color/black"
         android:textColorHint="#BCBCBC"
         android:layout_marginBottom="24dp" />
@@ -87,7 +64,7 @@
         android:gravity="end">
 
         <Button
-            android:id="@+id/btnCancel"
+            android:id="@+id/btnRegCancel"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,11 +72,11 @@
             android:textColor="#DB7093" />
 
         <Button
-            android:id="@+id/btnConfirm"
+            android:id="@+id/btnRegConfirm"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ЗАБРОНИРОВАТЬ"
+            android:text="СОЗДАТЬ"
             android:textColor="#DB7093"
             android:textStyle="bold" />
     </LinearLayout>

@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Restor">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MENUARBAT"
+            android:exported="false" />
+        <activity
+            android:name=".gogolDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MENUGOGOL"
+            android:exported="false" />
+        <activity
             android:name=".zakazvanya"
             android:exported="false" />
         <activity

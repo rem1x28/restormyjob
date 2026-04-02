@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FAFAFA"
     android:padding="16dp">
 
     <LinearLayout
@@ -9,79 +9,133 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Заголовок -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Дядя ВАНЯ"
-            android:textSize="26sp"
+            android:text="ДЯДЯ ВАНЯ"
+            android:textColor="#333333"
+            android:textSize="28sp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginBottom="16dp" />
 
-        <ImageView
-            android:id="@+id/restaurantImage"
+        <!-- Главное изображение -->
+        <androidx.cardview.widget.CardView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="220dp"
-            android:layout_marginBottom="16dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/vanya"
-            android:background="#EEE" />
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="16dp">
 
+            <ImageView
+                android:id="@+id/restaurantImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Ресторан Дядя Ваня"
+                android:scaleType="centerCrop"
+                android:src="@drawable/vanya" />
+        </androidx.cardview.widget.CardView>
+
+        <!-- Описание -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:lineSpacingMultiplier="1.2"
-            android:text="Традиционная русская кухня в современном исполнении. Уютное место для всей семьи, где чтят традиции и радуют гостеприимством."
+            android:layout_marginBottom="24dp"
+            android:lineSpacingMultiplier="1.3"
+            android:text="Добро пожаловать в «Дядя Ваня» — место с настоящей русской душой. Мы готовим по старинным рецептам, используя только натуральные продукты. У нас вы сможете насладиться атмосферой гостеприимства и вкусом домашних блюд, знакомых с детства."
+            android:textColor="#555555"
             android:textSize="16sp" />
 
-        <!-- Блок отзывов -->
+        <!-- Раздел отзывов -->
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Отзывы гостей:"
+            android:text="Отзывы наших гостей"
+            android:textColor="#333333"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="12dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="«Лучший борщ в городе! Атмосфера как дома у бабушки. Очень вежливый персонал и быстрая подача.» — Марина П."
-            android:textSize="14sp"
-            android:layout_marginBottom="4dp"
-            android:fontStyle="italic" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="«Брали пельмени и блины, всё очень вкусно. Цены адекватные для такого качества. Обязательно вернемся!» — Дмитрий."
-            android:textSize="14sp"
-            android:layout_marginBottom="24dp"
-            android:fontStyle="italic" />
-
+        <!-- Отзыв 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@drawable/item_backgroung"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="«Самый вкусный бургер в моей жизни! Черная булка и сочная котлета — это нечто. Очень уютное место, придем еще раз обязательно.»"
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:fontStyle="italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Константин, ★★★★★"
+                android:gravity="end"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Отзыв 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/item_backgroung"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="«Шоколадный фондан просто божественный. Тает во рту! Обслуживание очень быстрое, официанты приветливые. Рекомендую всем!»"
+                android:textColor="#444444"
+                android:textSize="14sp"
+                android:fontStyle="italic" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="— Анна, ★★★★★"
+                android:gravity="end"
+                android:textColor="#888888"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- Кнопки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp">
 
             <Button
                 android:id="@+id/btnOrder"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/button_rounded1"
                 android:text="Сделать заказ"
-                android:textColor="@color/black" />
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/btnReserve"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/button_rounded1"
                 android:text="Забронировать столик"
-                android:textColor="@color/black" />
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

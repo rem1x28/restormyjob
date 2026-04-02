@@ -3,18 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FDFDFD"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/tvMenuTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Меню блюд"
-        android:textSize="24sp"
+        android:text="Меню ресторана"
+        android:textColor="#333333"
+        android:textSize="26sp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="16dp" />
 
+    <!-- Поле поиска -->
     <EditText
         android:id="@+id/etSearch"
         android:layout_width="match_parent"
@@ -22,14 +25,18 @@
         android:hint="Поиск блюд..."
         android:padding="12dp"
         android:background="@drawable/item_backgroung"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="12dp"
         android:drawableStart="@android:drawable/ic_menu_search"
-        android:drawablePadding="8dp" />
+        android:drawablePadding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="#999" />
 
+    <!-- Основной список блюд -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:scrollbars="vertical">
 
         <LinearLayout
             android:id="@+id/pizzaContainer"
@@ -37,16 +44,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Блюда будут добавляться сюда -->
+            <!-- Здесь динамически появятся карточки блюд из Java-кода -->
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- Кнопка оформления заказа -->
     <Button
         android:id="@+id/btnOrder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Оформить заказ" />
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_rounded1"
+        android:text="Оформить заказ"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:elevation="4dp" />
 
 </LinearLayout>
