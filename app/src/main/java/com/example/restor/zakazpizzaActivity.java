@@ -1,5 +1,6 @@
 package com.example.restor;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -77,7 +78,7 @@ public class zakazpizzaActivity extends AppCompatActivity {
         }
 
         if (btnOrder != null) {
-            btnOrder.setText(existingOrderId != -1 ? "Добавить к бронированию" : "Выбрать время и заказать");
+            btnOrder.setText(existingOrderId != -1 ? "Добавить к бронированию" : "Выбрать дату и заказать");
             btnOrder.setOnClickListener(v -> handleOrderClick());
         }
     }
@@ -92,8 +93,8 @@ public class zakazpizzaActivity extends AppCompatActivity {
             // Если уже есть бронь, время не спрашиваем (оно в брони)
             finishPreOrder("");
         } else {
-            // Если просто предзаказ, спрашиваем время
-            showTimePicker();
+            // Если просто предзаказ, спрашиваем дату и время
+            showDateTimePicker();
         }
     }
 
@@ -104,12 +105,30 @@ public class zakazpizzaActivity extends AppCompatActivity {
         return false;
     }
 
-    private void showTimePicker() {
-        Calendar calendar = Calendar.getInstance();
-        new TimePickerDialog(this, (view, hourOfDay, minute) -> {
-            String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-            finishPreOrder(selectedTime);
-        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+    private void showDateTimePicker() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
+            
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+                Calendar selected = Calendar.getInstance();
+                selected.set(year, month, dayOfMonth, hourOfDay, minute);
+
+                if (hourOfDay < 10 || hourOfDay >= 23) {
+                    Toast.makeText(this, "Заказы принимаются только с 10:00 до 23:00", Toast.LENGTH_LONG).show();
+                } else if (selected.before(Calendar.getInstance())) {
+                    Toast.makeText(this, "Нельзя выбрать прошедшее время", Toast.LENGTH_SHORT).show();
+                } else {
+                    String selectedDateTime = String.format(Locale.getDefault(), "%02d.%02d.%d %02d:%02d", 
+                            dayOfMonth, month + 1, year, hourOfDay, minute);
+                    finishPreOrder(selectedDateTime);
+                }
+            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true);
+            timePickerDialog.show();
+            
+        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+        
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 
     private void addPizzaToLayout(pizza item, String description) {
@@ -140,7 +159,7 @@ public class zakazpizzaActivity extends AppCompatActivity {
         pizzaContainer.addView(pizzaCard);
     }
 
-    private void finishPreOrder(String time) {
+    private void finishPreOrder(String dateTime) {
         StringBuilder dishSummary = new StringBuilder();
         int total = 0;
 
@@ -161,7 +180,7 @@ public class zakazpizzaActivity extends AppCompatActivity {
             dbHelper.updateOrderDetails(existingOrderId, "Бронь + Предзаказ", finalDetails);
         } else {
             // Обычный заказ со временем
-            finalDetails = "Время получения: " + time + "\n\nБлюда:\n" + dishSummary.toString() + "\nИтого: " + total + " руб.";
+            finalDetails = "Дата и время получения: " + dateTime + "\n\nБлюда:\n" + dishSummary.toString() + "\nИтого: " + total + " руб.";
             dbHelper.insertOrder(currentUser, "DODO Pizza", "Предзаказ", finalDetails);
         }
 

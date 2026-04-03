@@ -196,6 +196,13 @@ public class MainActivity extends AppCompatActivity {
         ImageView pick1 = dialogView.findViewById(R.id.ivPick1);
         ImageView pick2 = dialogView.findViewById(R.id.ivPick2);
         ImageView pick3 = dialogView.findViewById(R.id.ivPick3);
+        ImageView pick4 = dialogView.findViewById(R.id.ivPick4);
+        ImageView pick5 = dialogView.findViewById(R.id.ivPick5);
+        ImageView pick6 = dialogView.findViewById(R.id.ivPick6);
+        ImageView pick7 = dialogView.findViewById(R.id.ivPick7);
+        ImageView pick8 = dialogView.findViewById(R.id.ivPick8);
+        ImageView pick9 = dialogView.findViewById(R.id.ivPick9);
+        ImageView pick10 = dialogView.findViewById(R.id.ivPick10);
         Button btnPickGallery = dialogView.findViewById(R.id.btnPickGallery);
         Button btnSave = dialogView.findViewById(R.id.btnEditSave);
         Button btnCancel = dialogView.findViewById(R.id.btnEditCancel);
@@ -209,16 +216,34 @@ public class MainActivity extends AppCompatActivity {
 
         View.OnClickListener pickListener = v -> {
             pick1.setAlpha(0.5f); pick2.setAlpha(0.5f); pick3.setAlpha(0.5f);
+            pick4.setAlpha(0.5f); pick5.setAlpha(0.5f); pick6.setAlpha(0.5f);
+            pick7.setAlpha(0.5f); pick8.setAlpha(0.5f); pick9.setAlpha(0.5f);
+            pick10.setAlpha(0.5f);
             v.setAlpha(1.0f);
             selectedAvatarUri = null; 
-            if (v.getId() == R.id.ivPick1) selectedAvatarResId = R.drawable.lina;
-            else if (v.getId() == R.id.ivPick2) selectedAvatarResId = R.drawable.vanya;
-            else if (v.getId() == R.id.ivPick3) selectedAvatarResId = R.drawable.gogolpic;
+            int id = v.getId();
+            if (id == R.id.ivPick1) selectedAvatarResId = R.drawable.avatarka1;
+            else if (id == R.id.ivPick2) selectedAvatarResId = R.drawable.avatarka2;
+            else if (id == R.id.ivPick3) selectedAvatarResId = R.drawable.avatarka3;
+            else if (id == R.id.ivPick4) selectedAvatarResId = R.drawable.avatarka4;
+            else if (id == R.id.ivPick5) selectedAvatarResId = R.drawable.avatarka5;
+            else if (id == R.id.ivPick6) selectedAvatarResId = R.drawable.avatarka6;
+            else if (id == R.id.ivPick7) selectedAvatarResId = R.drawable.avatarka7;
+            else if (id == R.id.ivPick8) selectedAvatarResId = R.drawable.avatarka8;
+            else if (id == R.id.ivPick9) selectedAvatarResId = R.drawable.avatarka9;
+            else if (id == R.id.ivPick10) selectedAvatarResId = R.drawable.avatarka10;
         };
 
         pick1.setOnClickListener(pickListener);
         pick2.setOnClickListener(pickListener);
         pick3.setOnClickListener(pickListener);
+        pick4.setOnClickListener(pickListener);
+        pick5.setOnClickListener(pickListener);
+        pick6.setOnClickListener(pickListener);
+        pick7.setOnClickListener(pickListener);
+        pick8.setOnClickListener(pickListener);
+        pick9.setOnClickListener(pickListener);
+        pick10.setOnClickListener(pickListener);
 
         if (btnPickGallery != null) {
             btnPickGallery.setOnClickListener(v -> mGetContent.launch("image/*"));

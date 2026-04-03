@@ -58,7 +58,7 @@
                 android:id="@+id/ivPick1"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/lina"
+                android:src="@drawable/avatarka1"
                 android:layout_margin="4dp"
                 android:scaleType="centerCrop" />
 
@@ -66,7 +66,7 @@
                 android:id="@+id/ivPick2"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/vanya"
+                android:src="@drawable/avatarka2"
                 android:layout_margin="4dp"
                 android:scaleType="centerCrop" />
 
@@ -74,7 +74,63 @@
                 android:id="@+id/ivPick3"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/gogolpic"
+                android:src="@drawable/avatarka3"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka4"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick5"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka5"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick6"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka6"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick7"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka7"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick8"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka8"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick9"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka9"
+                android:layout_margin="4dp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/ivPick10"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/avatarka10"
                 android:layout_margin="4dp"
                 android:scaleType="centerCrop" />
 

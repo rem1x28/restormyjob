@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import java.util.regex.Pattern;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -35,6 +36,11 @@ public class RegistrationActivity extends AppCompatActivity {
                 return;
             }
 
+            if (!isValidPassword(pass)) {
+                Toast.makeText(this, "Пароль должен быть не менее 8 символов, содержать заглавную букву, цифру и специальный символ", Toast.LENGTH_LONG).show();
+                return;
+            }
+
             if (dbHelper.checkUserExists(name)) {
                 Toast.makeText(this, "Пользователь уже существует", Toast.LENGTH_SHORT).show();
             } else {
@@ -49,5 +55,15 @@ public class RegistrationActivity extends AppCompatActivity {
         });
 
         tvBackToLogin.setOnClickListener(v -> finish());
+    }
+
+    private boolean isValidPassword(String password) {
+        if (password.length() < 8) return false;
+        
+        boolean hasUppercase = !password.equals(password.toLowerCase());
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasSpecial = password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*");
+        
+        return hasUppercase && hasDigit && hasSpecial;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.restor;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -69,7 +70,7 @@ public class MENUGOGOL extends AppCompatActivity {
         displayDishes();
 
         if (btnOrder != null) {
-            btnOrder.setText(existingOrderId != -1 ? "Добавить к бронированию" : "Выбрать время и заказать");
+            btnOrder.setText(existingOrderId != -1 ? "Добавить к бронированию" : "Выбрать дату и заказать");
             btnOrder.setOnClickListener(v -> handleOrderClick());
         }
     }
@@ -84,8 +85,8 @@ public class MENUGOGOL extends AppCompatActivity {
             // Если уже есть бронь, время не спрашиваем (оно в брони)
             finishOrder("");
         } else {
-            // Если просто предзаказ, спрашиваем время
-            showTimePicker();
+            // Если просто предзаказ, спрашиваем дату и время
+            showDateTimePicker();
         }
     }
 
@@ -96,15 +97,33 @@ public class MENUGOGOL extends AppCompatActivity {
         return false;
     }
 
-    private void showTimePicker() {
-        Calendar calendar = Calendar.getInstance();
-        new TimePickerDialog(this, (view, hourOfDay, minute) -> {
-            String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-            finishOrder(selectedTime);
-        }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+    private void showDateTimePicker() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
+            
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minute) -> {
+                Calendar selected = Calendar.getInstance();
+                selected.set(year, month, dayOfMonth, hourOfDay, minute);
+
+                if (hourOfDay < 10 || hourOfDay >= 23) {
+                    Toast.makeText(this, "Заказы принимаются только с 10:00 до 23:00", Toast.LENGTH_LONG).show();
+                } else if (selected.before(Calendar.getInstance())) {
+                    Toast.makeText(this, "Нельзя выбрать прошедшее время", Toast.LENGTH_SHORT).show();
+                } else {
+                    String selectedDateTime = String.format(Locale.getDefault(), "%02d.%02d.%d %02d:%02d", 
+                            dayOfMonth, month + 1, year, hourOfDay, minute);
+                    finishOrder(selectedDateTime);
+                }
+            }, now.get(Calendar.HOUR_OF_DAY), now.get(Calendar.MINUTE), true);
+            timePickerDialog.show();
+            
+        }, now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
+        
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+        datePickerDialog.show();
     }
 
-    private void finishOrder(String time) {
+    private void finishOrder(String dateTime) {
         StringBuilder dishSummary = new StringBuilder();
         int total = 0;
 
@@ -126,7 +145,7 @@ public class MENUGOGOL extends AppCompatActivity {
             finalDetails = (bookingDetails != null ? bookingDetails : "") + "\n\nБлюда:\n" + dishSummary.toString() + "\nИтого за еду: " + total + " руб.";
             dbHelper.updateOrderDetails(existingOrderId, "Бронь + Предзаказ", finalDetails);
         } else {
-            finalDetails = "Время получения: " + time + "\n\nБлюда:\n" + dishSummary.toString() + "\nИтого: " + total + " руб.";
+            finalDetails = "Дата и время получения: " + dateTime + "\n\nБлюда:\n" + dishSummary.toString() + "\nИтого: " + total + " руб.";
             dbHelper.insertOrder(currentUser, "Гоголь-Моголь", "Предзаказ", finalDetails);
         }
 

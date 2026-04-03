@@ -90,14 +90,28 @@ public class gogolactivity extends AppCompatActivity {
 
         etDate.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
-            new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
-                Calendar timeCalendar = Calendar.getInstance();
-                new TimePickerDialog(this, (view2, hourOfDay, minute) -> {
-                    String selectedDateTime = String.format(Locale.getDefault(), "%02d.%02d.%d %02d:%02d", 
-                            dayOfMonth, month + 1, year, hourOfDay, minute);
-                    etDate.setText(selectedDateTime);
-                }, timeCalendar.get(Calendar.HOUR_OF_DAY), timeCalendar.get(Calendar.MINUTE), true).show();
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view1, year, month, dayOfMonth) -> {
+                
+                TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view2, hourOfDay, minute) -> {
+                    Calendar selectedDateTime = Calendar.getInstance();
+                    selectedDateTime.set(year, month, dayOfMonth, hourOfDay, minute);
+                    
+                    if (hourOfDay < 10 || hourOfDay >= 23) {
+                        Toast.makeText(this, "Бронирование доступно только с 10:00 до 23:00", Toast.LENGTH_LONG).show();
+                    } else if (selectedDateTime.before(Calendar.getInstance())) {
+                        Toast.makeText(this, "Нельзя выбрать прошедшую дату и время", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String formatted = String.format(Locale.getDefault(), "%02d.%02d.%d %02d:%02d", 
+                                dayOfMonth, month + 1, year, hourOfDay, minute);
+                        etDate.setText(formatted);
+                    }
+                }, 12, 0, true);
+                timePickerDialog.show();
+                
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            
+            datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+            datePickerDialog.show();
         });
 
         btnConfirm.setOnClickListener(v -> {
